@@ -13,12 +13,12 @@ class AddEditForm extends React.Component {
   }
 
   onChange = e => {
-    this.setState({[e.target.name]: e.target.value})
+    this.setState({ [e.target.name]: e.target.value })
   }
 
   submitFormAdd = e => {
     e.preventDefault()
-    fetch('http://localhost:3000/crud', {
+    fetch('https://636e5c89b567eed48adb2fb3.mockapi.io/users', {
       method: 'post',
       headers: {
         'Content-Type': 'application/json'
@@ -34,7 +34,7 @@ class AddEditForm extends React.Component {
     })
       .then(response => response.json())
       .then(item => {
-        if(Array.isArray(item)) {
+        if (Array.isArray(item)) {
           this.props.addItemToState(item[0])
           this.props.toggle()
         } else {
@@ -63,8 +63,7 @@ class AddEditForm extends React.Component {
     })
       .then(response => response.json())
       .then(item => {
-        if(Array.isArray(item)) {
-          // console.log(item[0])
+        if (Array.isArray(item)) {
           this.props.updateState(item[0])
           this.props.toggle()
         } else {
@@ -74,9 +73,8 @@ class AddEditForm extends React.Component {
       .catch(err => console.log(err))
   }
 
-  componentDidMount(){
-    // if item exists, populate the state with proper data
-    if(this.props.item){
+  componentDidMount() {
+    if (this.props.item) {
       const { id, first, last, email, phone, location, hobby } = this.props.item
       this.setState({ id, first, last, email, phone, location, hobby })
     }
@@ -91,23 +89,23 @@ class AddEditForm extends React.Component {
         </FormGroup>
         <FormGroup>
           <Label for="last">Last Name</Label>
-          <Input type="text" name="last" id="last" onChange={this.onChange} value={this.state.last === null ? '' : this.state.last}  />
+          <Input type="text" name="last" id="last" onChange={this.onChange} value={this.state.last === null ? '' : this.state.last} />
         </FormGroup>
         <FormGroup>
           <Label for="email">Email</Label>
-          <Input type="email" name="email" id="email" onChange={this.onChange} value={this.state.email === null ? '' : this.state.email}  />
+          <Input type="email" name="email" id="email" onChange={this.onChange} value={this.state.email === null ? '' : this.state.email} />
         </FormGroup>
         <FormGroup>
           <Label for="phone">Phone</Label>
-          <Input type="text" name="phone" id="phone" onChange={this.onChange} value={this.state.phone === null ? '' : this.state.phone}  placeholder="ex. 555-555-5555" />
+          <Input type="text" name="phone" id="phone" onChange={this.onChange} value={this.state.phone === null ? '' : this.state.phone} placeholder="ex. 555-555-5555" />
         </FormGroup>
         <FormGroup>
           <Label for="location">Location</Label>
-          <Input type="text" name="location" id="location" onChange={this.onChange} value={this.state.location === null ? '' : this.state.location}  placeholder="City, State" />
+          <Input type="text" name="location" id="location" onChange={this.onChange} value={this.state.location === null ? '' : this.state.location} placeholder="City, State" />
         </FormGroup>
         <FormGroup>
           <Label for="hobby">Hobby</Label>
-          <Input type="text" name="hobby" id="hobby" onChange={this.onChange} value={this.state.hobby}  />
+          <Input type="text" name="hobby" id="hobby" onChange={this.onChange} value={this.state.hobby} />
         </FormGroup>
         <Button>Submit</Button>
       </Form>
