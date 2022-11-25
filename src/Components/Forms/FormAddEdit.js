@@ -4,8 +4,8 @@ import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 class AddEditForm extends React.Component {
   state = {
     id: 0,
-    first: '',
-    last: '',
+    name: '',
+    Endereco: '',
     email: '',
     phone: '',
     location: '',
@@ -18,18 +18,15 @@ class AddEditForm extends React.Component {
 
   submitFormAdd = e => {
     e.preventDefault()
-    fetch('https://636e5c89b567eed48adb2fb3.mockapi.io/users', {
+    fetch(`https://636e5c89b567eed48adb2fb3.mockapi.io/users`, {
       method: 'post',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        first: this.state.first,
-        last: this.state.last,
-        email: this.state.email,
-        phone: this.state.phone,
-        location: this.state.location,
-        hobby: this.state.hobby
+        name: this.state.name,
+        Endereco: this.state.Endereco,
+        createAt: this.state.createAt
       })
     })
       .then(response => response.json())
@@ -46,19 +43,15 @@ class AddEditForm extends React.Component {
 
   submitFormEdit = e => {
     e.preventDefault()
-    fetch('http://localhost:3000/crud', {
+    fetch(`https://636e5c89b567eed48adb2fb3.mockapi.io/users/${this.state.id}`, {
       method: 'put',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        id: this.state.id,
-        first: this.state.first,
-        last: this.state.last,
-        email: this.state.email,
-        phone: this.state.phone,
-        location: this.state.location,
-        hobby: this.state.hobby
+        name: this.state.name,
+        Endereco: this.state.Endereco,
+        createAt: this.state.createAt
       })
     })
       .then(response => response.json())
@@ -75,8 +68,8 @@ class AddEditForm extends React.Component {
 
   componentDidMount() {
     if (this.props.item) {
-      const { id, first, last, email, phone, location, hobby } = this.props.item
-      this.setState({ id, first, last, email, phone, location, hobby })
+      const { id, name, Endereco, createAt, phone, location, hobby } = this.props.item
+      this.setState({ id, name, Endereco, createAt, phone, location, hobby })
     }
   }
 
@@ -84,28 +77,16 @@ class AddEditForm extends React.Component {
     return (
       <Form onSubmit={this.props.item ? this.submitFormEdit : this.submitFormAdd}>
         <FormGroup>
-          <Label for="first">First Name</Label>
-          <Input type="text" name="first" id="first" onChange={this.onChange} value={this.state.first === null ? '' : this.state.first} />
+          <Label for="name">Name</Label>
+          <Input type="text" name="name" id="name" onChange={this.onChange} value={this.state.name === null ? '' : this.state.name} />
         </FormGroup>
         <FormGroup>
-          <Label for="last">Last Name</Label>
-          <Input type="text" name="last" id="last" onChange={this.onChange} value={this.state.last === null ? '' : this.state.last} />
+          <Label for="Endereco">Endereco Name</Label>
+          <Input type="text" name="Endereco" id="Endereco" onChange={this.onChange} value={this.state.Endereco === null ? '' : this.state.Endereco} />
         </FormGroup>
         <FormGroup>
-          <Label for="email">Email</Label>
-          <Input type="email" name="email" id="email" onChange={this.onChange} value={this.state.email === null ? '' : this.state.email} />
-        </FormGroup>
-        <FormGroup>
-          <Label for="phone">Phone</Label>
-          <Input type="text" name="phone" id="phone" onChange={this.onChange} value={this.state.phone === null ? '' : this.state.phone} placeholder="ex. 555-555-5555" />
-        </FormGroup>
-        <FormGroup>
-          <Label for="location">Location</Label>
-          <Input type="text" name="location" id="location" onChange={this.onChange} value={this.state.location === null ? '' : this.state.location} placeholder="City, State" />
-        </FormGroup>
-        <FormGroup>
-          <Label for="hobby">Hobby</Label>
-          <Input type="text" name="hobby" id="hobby" onChange={this.onChange} value={this.state.hobby} />
+          <Label for="createAt">createAt</Label>
+          <Input type="createAt" name="createAt" id="createAt" onChange={this.onChange} value={this.state.createAt === null ? '' : this.state.createAt} />
         </FormGroup>
         <Button>Submit</Button>
       </Form>
