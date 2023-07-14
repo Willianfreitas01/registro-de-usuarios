@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Table, Button } from 'reactstrap';
 import ModalForm from '../Modals/Modal'
 
+
 class DataTable extends Component {
 
   deleteItem = id => {
@@ -28,8 +29,9 @@ class DataTable extends Component {
       return (
         <tr key={item.id}>
           <th scope="row">{item.name}</th>
-          <td>{item.Endereco}</td>
-          <td>{item.createAt}</td>
+          <td>{item.address}</td>
+          <td>{item.hobby}</td>
+          <td>{item.Actions}</td>
           <td>
             <div style={{ width: "110px" }}>
               <ModalForm buttonLabel="Edit" item={item} updateState={this.props.updateState} />
@@ -45,10 +47,11 @@ class DataTable extends Component {
       <Table responsive hover>
         <thead>
           <tr>
-            <th>ID</th>
             <th>Name</th>
-            <th>Endereco</th>
-            <th>createAt</th>
+            <th>Address</th>
+            <th>Hobby</th>
+            <th></th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>

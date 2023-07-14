@@ -1,16 +1,21 @@
 import React from 'react';
-import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import {Form, FormGroup, Label, Input } from 'reactstrap';
 
+
+function refreshPage() {
+  window.location.reload(false);
+}
 class AddEditForm extends React.Component {
   state = {
     id: 0,
     name: '',
-    Endereco: '',
+    address: '',
     email: '',
     phone: '',
     location: '',
     hobby: ''
   }
+  
 
   onChange = e => {
     this.setState({ [e.target.name]: e.target.value })
@@ -25,7 +30,8 @@ class AddEditForm extends React.Component {
       },
       body: JSON.stringify({
         name: this.state.name,
-        Endereco: this.state.Endereco,
+        address: this.state.address,
+        hobby: this.state.hobby,
         createAt: this.state.createAt
       })
     })
@@ -50,7 +56,8 @@ class AddEditForm extends React.Component {
       },
       body: JSON.stringify({
         name: this.state.name,
-        Endereco: this.state.Endereco,
+        address: this.state.address,
+        hobby: this.state.hobby,
         createAt: this.state.createAt
       })
     })
@@ -68,10 +75,11 @@ class AddEditForm extends React.Component {
 
   componentDidMount() {
     if (this.props.item) {
-      const { id, name, Endereco, createAt, phone, location, hobby } = this.props.item
-      this.setState({ id, name, Endereco, createAt, phone, location, hobby })
+      const { id, name, address, createAt, phone, location, hobby } = this.props.item
+      this.setState({ id, name, address, createAt, phone, location, hobby })
     }
   }
+  
 
   render() {
     return (
@@ -81,14 +89,14 @@ class AddEditForm extends React.Component {
           <Input type="text" name="name" id="name" onChange={this.onChange} value={this.state.name === null ? '' : this.state.name} />
         </FormGroup>
         <FormGroup>
-          <Label for="Endereco">Endereco Name</Label>
-          <Input type="text" name="Endereco" id="Endereco" onChange={this.onChange} value={this.state.Endereco === null ? '' : this.state.Endereco} />
+          <Label for="address">Address</Label>
+          <Input type="text" name="address" id="address" onChange={this.onChange} value={this.state.address === null ? '' : this.state.address} />
         </FormGroup>
         <FormGroup>
-          <Label for="createAt">createAt</Label>
-          <Input type="createAt" name="createAt" id="createAt" onChange={this.onChange} value={this.state.createAt === null ? '' : this.state.createAt} />
+          <Label for="hobby">Hobby</Label>
+          <Input type="hobby" name="hobby" id="hobby" onChange={this.onChange} value={this.state.hobby === null ? '' : this.state.hobby} />
         </FormGroup>
-        <Button>Submit</Button>
+        <button onClick={refreshPage}>Submit</button>
       </Form>
     );
   }
