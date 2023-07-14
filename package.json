@@ -1,9 +1,10 @@
 {
-  "name": "cp1-frontend",
+  "name": "registro-de-usuarios",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "bootstrap": "^4.3.1",
+    "express": "^4.18.2",
     "react": "^16.8.5",
     "react-csv": "^1.1.1",
     "react-dom": "^16.8.5",
