@@ -2,9 +2,6 @@ import React from 'react';
 import {Form, FormGroup, Label, Input } from 'reactstrap';
 
 
-function refreshPage() {
-  window.location.reload(false);
-}
 class AddEditForm extends React.Component {
   state = {
     id: 0,
@@ -96,7 +93,7 @@ class AddEditForm extends React.Component {
           <Label for="hobby">Hobby</Label>
           <Input type="hobby" name="hobby" id="hobby" onChange={this.onChange} value={this.state.hobby === null ? '' : this.state.hobby} />
         </FormGroup>
-        <button onClick={refreshPage}>Submit</button>
+        <button >Submit</button>
       </Form>
     );
   }
